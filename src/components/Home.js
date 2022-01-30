@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <div className="container my-2">
         <h2>Add a note</h2>
-        <form className='my-5'>
+        {/* <form className='my-5'>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
             <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autoComplete="username" />
@@ -22,7 +22,7 @@ const Home = () => {
           </div>
           <button type="submit" className="btn btn-primary grow">Login</button>
           <button type="submit" className="btn btn-primary grow mx-5">Register</button>
-        </form>
+        </form> */}
         <Notes />
       </div>
     </>
