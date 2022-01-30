@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
+import Alert from './components/Alert';
 import NoteState from './context/notes/NoteState';
 import 'tachyons';
 
@@ -11,7 +12,7 @@ function App() {
     <>
       <NoteState>
         <Navbar />
-
+        <Alert />
         <div className="container">
 
           <Routes>

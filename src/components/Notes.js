@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import NotesContext from '../context/notes/noteContext';
 import Noteitem from './Noteitem';
+import AddNote from './AddNote';
 
 const Notes = () => {
 
     const nCon = useContext(NotesContext);
-    // eslint-disable-next-line
-    const { notes, setNotes } = nCon;
+    const { notes } = nCon;
     // let count= 0;
     return (
         <>
+            <AddNote />
             <div className="">
                 <h2> Your notes</h2>
                 <div className="notes" style={{
