@@ -11,6 +11,10 @@ const Noteitem = ({ note }) => {
     const context = useContext(NoteContext);
     const { deleteNote } = context;
 
+    const handleDelete = () => {
+        deleteNote(note._id);
+    }
+
     return (
         <>
             <div className="card my-card" style={
@@ -25,7 +29,7 @@ const Noteitem = ({ note }) => {
                     <p className="card-text" style={{marginBottom: '40px'}}>{`${note.desc.length>=250?note.desc.slice(0, 250)+'...':note.desc}`}</p>
                     <div className={`buttons`}>
                         <i className="btn btn-primary mx-3" style={{width: '30px', height: '30px', padding: 0}}><EditIcon /></i>
-                        <i className="btn btn-danger mx-3" style={{width: '30px', height: '30px', padding: 0}} onClick={() => deleteNote(note._id)}><DeleteOutlinedIcon /></i>
+                        <i className="btn btn-danger mx-3" style={{width: '30px', height: '30px', padding: 0}} onClick={handleDelete}><DeleteOutlinedIcon /></i>
                     </div>
                 </div>
             </div>
