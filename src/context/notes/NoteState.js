@@ -78,24 +78,25 @@ const NoteState = (props) => {
         // to-do api-call
         const url = `${host}api/notes/updatenote/${id}`;
         const response = await fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFlZmQwZjc5NDVkYzQzMjZlZmIyOGU2In0sImlhdCI6MTY0MzE5MzUzMn0.Fgk-cPJ55cRuX5ePdtM2BwPtAWkpdAP7knuPOCnL558'
+                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFlZmQwZjc5NDVkYzQzMjZlZmIyOGU2In0sImlhdCI6MTY0MzExNDU4Nn0.iz1YK8yaGOyWgrTt3jyus_M7fjkbRqbI_MmjslExf1E'
             },
             body: JSON.stringify({ title, desc, tag })
         });
-        const json = response.json();
+        console.log(response);
+        getNotes();
 
-        for (let i = 0; i < notes.length; i++) {
-            const e = notes[i];
-            if (e._id === id) {
-                e.title = title;
-                e.desc = desc;
-                e.tag = tag;
-                break;
-            }
-        }
+        // for (let i = 0; i < notes.length; i++) {
+        //     const e = notes[i];
+        //     if (e._id === id) {
+        //         e.title = title;
+        //         e.desc = desc;
+        //         e.tag = tag;
+        //         break;
+        //     }
+        // }
     }
 
     return (

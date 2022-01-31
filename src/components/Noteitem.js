@@ -6,7 +6,7 @@ import './noteitem.css';
 
 import NoteContext from '../context/notes/noteContext';
 
-const Noteitem = ({ note }) => {
+const Noteitem = ({ note, handleEdit }) => {
 
     const context = useContext(NoteContext);
     const { deleteNote } = context;
@@ -28,7 +28,7 @@ const Noteitem = ({ note }) => {
                     <h6 className="card-subtitle mb-2 text-muted">{note.tag}</h6>
                     <p className="card-text" style={{marginBottom: '40px'}}>{`${note.desc.length>=250?note.desc.slice(0, 250)+'...':note.desc}`}</p>
                     <div className={`buttons`}>
-                        <i className="btn btn-primary mx-3" style={{width: '30px', height: '30px', padding: 0}}><EditIcon /></i>
+                        <i className="btn btn-primary mx-3" style={{width: '30px', height: '30px', padding: 0}}onClick={() => handleEdit(note)}><EditIcon /></i>
                         <i className="btn btn-danger mx-3" style={{width: '30px', height: '30px', padding: 0}} onClick={handleDelete}><DeleteOutlinedIcon /></i>
                     </div>
                 </div>
