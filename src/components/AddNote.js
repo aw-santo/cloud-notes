@@ -18,7 +18,7 @@ const AddNote = () => {
     return (
         <>
             <div className="container my-2">
-                <div className='my-5'>
+                <form className='my-5' method="post" action="/">
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label">Title</label>
                         <input type="text" className="form-control" id="title" name="title" aria-describedby="title" onChange={onChange}/>
@@ -31,8 +31,9 @@ const AddNote = () => {
                         <label htmlFor="desc" className="form-label">Description</label>
                         <input type="text" className="form-control bb" id="desc" name="desc" onChange={onChange} />
                     </div>
-                    <button type="submit" className="btn btn-primary grow" onClick={handleAdd}>Add</button>
-                </div>
+                    <button type="button" disabled={note.title.length===0 || note.desc.length===0} className="btn btn-primary grow" onClick={handleAdd}>Add</button>
+                    <button type="reset" className="btn btn-danger mx-4 grow">Clear</button>
+                </form>
             </div>
         </>
     );

@@ -15,6 +15,7 @@ const Notes = () => {
     }, []);
 
     const editRef = useRef(null);
+    const cancelRef = useRef(null);
 
     const [note, setNote] = useState({title:'', desc:'', tag:'Personal'});
 
@@ -26,6 +27,7 @@ const Notes = () => {
 
     const handleSave = (e) => {
         editNote(note._id, note.title, note.desc, note.tag);
+        cancelRef.current.click();
     }
 
     const onChange = (e) => {
@@ -64,7 +66,7 @@ const Notes = () => {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button ref={cancelRef} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="button" className="btn btn-primary" onClick={handleSave}>Save changes</button>
                         </div>
                     </div>
@@ -81,11 +83,12 @@ const Notes = () => {
                     columnGap: '15px'
                 }}>
                     {
+                        notes.length?
                         notes.map((note) => {
                             return (
                                 <Noteitem key={note._id} note={note} handleEdit={handleEdit} />
                             );
-                        })
+                        }): <p className='text-center'>Nothing to show😐...</p>
                     }
                 </div>
             </div>
