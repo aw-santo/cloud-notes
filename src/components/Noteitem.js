@@ -6,13 +6,14 @@ import './noteitem.css';
 
 import NoteContext from '../context/notes/noteContext';
 
-const Noteitem = ({ note, handleEdit }) => {
+const Noteitem = ({ note, handleEdit, showAlert }) => {
 
     const context = useContext(NoteContext);
     const { deleteNote } = context;
 
     const handleDelete = () => {
         deleteNote(note._id);
+        showAlert("Note deleted", 'success');
     }
 
     return (

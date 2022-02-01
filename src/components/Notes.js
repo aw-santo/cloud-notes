@@ -2,15 +2,21 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import NotesContext from '../context/notes/noteContext';
 import Noteitem from './Noteitem';
 import AddNote from './AddNote';
+import { useNavigate } from 'react-router-dom';
 // import { display } from '@mui/system';
 
-const Notes = () => {
-
+const Notes = ({showAlert}) => {
+    let navigate = useNavigate();
     const nCon = useContext(NotesContext);
     const { notes, getNotes, editNote } = nCon;
 
     useEffect(() => {
-        getNotes();
+        if (localStorage.getItem('token')) {
+            getNotes();
+        }
+        else{
+            navigate('/login');
+        }
         // eslint-disable-next-line
     }, []);
 
@@ -28,6 +34,7 @@ const Notes = () => {
     const handleSave = (e) => {
         editNote(note._id, note.title, note.desc, note.tag);
         cancelRef.current.click();
+        showAlert("Note saved", 'success');
     }
 
     const onChange = (e) => {
@@ -38,10 +45,9 @@ const Notes = () => {
 
     return (
         <>
-        {console.log(note)}
-            <AddNote />
+            <AddNote showAlert={showAlert} />
             <button ref={editRef} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ display: 'none' }}>
-                Launch demo modal
+                Edit note
             </button>
 
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,7 +92,7 @@ const Notes = () => {
                         notes.length?
                         notes.map((note) => {
                             return (
-                                <Noteitem key={note._id} note={note} handleEdit={handleEdit} />
+                                <Noteitem key={note._id} note={note} handleEdit={handleEdit} showAlert={showAlert}/>
                             );
                         }): <p className='text-center'>Nothing to show😐...</p>
                     }
